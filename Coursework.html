@@ -169,7 +169,6 @@
                 removeFromcart: function (item, index){
                     this.cart = this.cart.filter((cartItem, cartIndex) => cartIndex !== index);
                     item.spaces += 1;
-                    
                 }
 
             },
@@ -211,7 +210,9 @@
 
                 canShowCheckout: function () {
                     return this.cart.length > 0;
-                }
+                },
+                canCheckout: function()
+
             }
 
         });
