@@ -132,10 +132,10 @@
             el: '#app',
             data: {
                 showProduct: true,
-                sitename: 'Vue.js Parent Student Activities',
+                sitename: 'Vue.js Parents Student Activities',
                 order: {
                     Name: '',
-                    Method: '',
+                    Mobile: '',
                 },
 
                 products: productArray,
@@ -211,7 +211,9 @@
                 canShowCheckout: function () {
                     return this.cart.length > 0;
                 },
-                canCheckout: function()
+                canCheckout: function() {
+                    return /^\d+$/.test(this.order.Mobile) && /^[a-zA-Z]+$/.test(this.order.Name) && this.cart.length > 0;
+                },
 
             }
 
