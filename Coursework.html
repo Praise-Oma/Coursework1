@@ -101,12 +101,7 @@
                     <input v-model.number="order.Mobile" type="number" />
                 </p>
 
-
-
-                <p>Name: {{order.Name}}</p>
-                <p>Mobile Number: {{order.Mobile}}</p>
-
-                <button v-on:click="submitForm">Checkout</button>
+                <button v-if ="canCheckout" v-on:click="submitForm">Checkout</button>
             </div>
 
         </main>
@@ -174,6 +169,7 @@
                 removeFromcart: function (item, index){
                     this.cart = this.cart.filter((cartItem, cartIndex) => cartIndex !== index);
                     item.spaces += 1;
+                    
                 }
 
             },
