@@ -61,7 +61,7 @@
             </div>
 
             <div v-else>
-                <h2 style="color: black;"> Checkout</h2>
+                <h2 style="color: black;"> Checkout Page</h2>
                 <div v-for="(product, index) in cart">
                     <figure>
                         <img v-bind:src="product.image"
@@ -106,7 +106,7 @@
                 <p>Name: {{order.Name}}</p>
                 <p>Mobile Number: {{order.Mobile}}</p>
 
-                <button v-on:click="submitForm">Check Out</button>
+                <button v-on:click="submitForm">Checkout</button>
             </div>
 
         </main>
