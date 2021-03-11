@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Vue.js Parent School Activities</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+        
+        <script src="item.js"></script>
+    </head>
+
+    <body>
+        <div id="app" style="background:whitesmoke; width: 120%; height: 120%;">
+            <header>
+                <h2 v-text= "sitename"></h2>
+                <button @click = "showCheckout">
+                    {{ cartItemCount }}
+                 <a style="float: right;" href="8" class= "btn btn=primary" v-on:on></a><span class="fa fa-cart-plus"></span> Checkout
+                </button>
+            </header>
+                <main>
+                    <div v-if= "showProduct">
+                        <div v-for="product in sortedProducts">
+                    <figure>
+                        <img v-bind:src="product.image" style="float:initial; background: rgb(143, 168, 188); align-items: center; justify-content: center; width: 400px; height: 250px; margin: 2em 0; border: 3px solid black; border-radius: 10px; padding: .5em; display: block; ">
+
+                        </figure>
+
+                <h2 v-text ="product.title" style="text-align: center; box-sizing: border-box; background-color: rgb(100, 110, 150); padding: 1em; width: 15%; margin: 0 auto; border: 5px solid black; text-align: center;"></h2>
+                <h3 v-html ="product.description" style="text-align: center; box-sizing: border-box; background-color: rgb(100, 110, 151); padding: 1em; width: 15%; margin: 0 auto; border: 5px solid black; text-align: center;"></h3>
+
+            <h4 style="text-align: center; box-sizing: border-box;">Price: {{product.currency}}{{product.price}}</h4>
+            <b style="text-align: rigth; box-sizing: border-box;">Spaces: {{product.spaces }}</b> </br></br>
+                    
+            <button v-on:click="addTocart(product)" style="float: center; background:#011729; color: white;"  href="#" class= "btn btn-primary"v-if="canAddToCart">Add to Cart</button>
+            <button disabled= "disabled" style="float: center; background:#b5bdc2; color: rgb(12, 12, 12);"  href="#" class= "btn btn-primary" v-else>Add to Cart</button>
+            
+            
+            <span v-else-if="product.spaces - cartCount(product.id) < 5">
+                    only {{product.availableInventory - cartItemCount(product.id)}} left!
+            </span>
+            <a style="background-color: rgb(43, 71, 71); color: white;" span v-else>Enroll now!</span> 
+                
+            </div>
+        </div>
+
+                    <div v-else>
+                        <h2> Checkout</h2>
+                        <p>
+                            <strong>Name:</strong>
+                            <input v-model.trim="order.firstName"
+                            type="text" onkeypress="validate(event)" /> 
+                        </p>
+                        
+                    <p>
+                        <strong>Mobile Number:</strong>
+                        <input v-model.number="order.Mobile"
+                        type="number"/>
+                    </p>
+
+                    <p>
+                        <input type="radio" id="home" value="Home" v-model="order.method">
+                        <label for="home">Home</label>
+                        <input type="radio" id="business" value="business" v-model="order.method">
+                        <label for="home">Business</label>
+                    </p>
+
+
+                        <h2>Order Information</h2>
+                        <p>Name: {{order.Name}}</p>
+                        <p>Mobile Number: {{order.Mobile}}</p>
+                    
+                        <button v-on:click="submitForm">Place Order</button>
+                    </div>
+
+                </main>
+        </div>
+
+        <div class="sidebar-container">
+    <div class="checkout" v-show="cartCount > 0">
+      <button @click="toggleView">Cart ({{cartCount}})</button>
+    </div>
+    <div class="sidebar">
+      <p style="background-color: rgb(43, 71, 71); color: seashell;">Sort by</p>
+
+      <ul>
+        <li v-for="fieldFilter in fieldFilters" :key="fieldFilter.id" style="background-color: #011729; color: antiquewhite;">
+          <input
+            type="radio"
+            :id="fieldFilter.id"
+            :name="fieldFilter.name"
+            :value="fieldFilter.value"
+            @change="setFieldValue(fieldFilter.value)"
+          />
+          <label :for="fieldFilter.value">{{ fieldFilter.text }}</label>
+        </li>
+      </ul>
+
+      <p>Sort by Order</p>
+      <ul>
+        <li v-for="orderFilter in orderFilters" :key="orderFilter.id">
+          <input
+            type="radio"
+            :id="orderFilter.id"
+            :name="orderFilter.name"
+            :value="orderFilter.value"
+            @change="setOrderValue(orderFilter.value)"
+          />
+          <label :for="orderFilter.value">{{ orderFilter.text }}</label>
+        </li>
+      </ul>
+    </div>
+  </div>
+</template>
+
+<script>
+  {
+  name: "ShoppingCart",
+  props: {
+    toggleView: Function,
+    cartItems: Array,
+    removeFromCart: Function,
+    checkout: Function
+  }
+
+  data: () => ({
+    name: "",
+    phone: "",
+  }),
+  
+
+{
+    id: FILTER_ORDER.ASC,
+    name: FILTER_NAME,
+    value: FILTER_ORDER.ASC,
+    text: 'Ascending',
+  },
+
+  {
+    id: FILTER_ORDER.DESC,
+    name: FILTER_NAME,
+    value: FILTER_ORDER.DESC,
+    text: 'Descending'
+  },
+
+{
+    id: "subject",
+    name: FILTER_NAME,
+    value: "subject",
+    text: "Subject",
+  },
+
+  {
+    id: 'location',
+    name: FILTER_NAME,
+    value: 'location',
+    text: 'Location',
+  }
+
+  {
+    id: 'price',
+    name: FILTER_NAME,
+    value: 'price',
+    text: 'Price',
+  }
+
+  {
+    id: 'availability',
+    name: FILTER_NAME,
+    value: 'availability',
+    text: 'Availability',
+  };
+import { FILTER_ORDER } from "../constants";
+
+export default {
+  name: "Sidebar",
+  props: {
+    filter: Function,
+    toggleView: Function,
+    cartCount: Number,
+  },
+  data: () => ({
+    selectedFilter: "subject",
+    selectedOrder: FILTER_ORDER.ASC,
+    orderFilters: orderFilter,
+    fieldFilters: fieldFilter,
+  }),
+  methods: {
+    setFieldValue: function (value) {
+      this.selectedFilter = value;
+      this.filter(this.selectedFilter, this.selectedOrder);
+    },
+    setOrderValue: function (value) {
+      this.selectedOrder = value;
+      this.filter(this.selectedFilter, this.selectedOrder);
+    },
+  },
+};
+</script>
+
+<style scoped>
+.sidebar-container {
+  width: 25%;
+  height: 100vh;
+}
+
+.checkout {
+  margin-top: 16px;
+  padding-left: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 300px;
+  padding-left: 40px;
+}
+
+.sidebar p {
+  margin: 0;
+  padding: 0;
+  font-weight: 800;
+  font-size: 20px;
+}
+
+.sidebar ul {
+  padding: 0;
+}
+
+.sidebar ul li {
+  list-style: none;
+}
+</style>
+
+
+        <script> 
+        var webstore = new Vue({
+            el: '#app',
+            data: {
+                showProduct: true,
+                sitename: 'Vue.js Parent Student Activities', 
+                order:{
+                    firstName: '',
+                    lastName: '',
+                    city: '',
+                    Method: 'Home',
+                },
+
+               products: productArray,
+                cart: []
+            
+            },
+            methods:{
+                addTocart: function(product){
+                    console.log('testing');
+                    this.cart.push(product.id);
+                },
+                showCheckout: function(){
+                    console.log(this.showProduct);
+                    this.showProduct = this.showProduct ? false : true;
+                },
+                submitForm(){
+                    alert('Your order has been submitted!')
+                },
+                canAddToCart: function(product){
+                        return product.spaces > this.cartCount(product.id);
+                    },
+                    cartCount(id){
+                        let count = 0;
+                        for (let i = 0; i < this.cart.length; i++){
+                            if (this.cart[i] === id){
+                                count++;
+                            }
+                    }
+                    return count;
+            }
+        },
+                computed: {
+                    cartItemCount: function(){
+                        return this.cart.length || '';
+                    }, 
+                    sortedProducts(){
+                        function compare (a, b){
+                            if (a.price > b.price) return 1;
+                            if (a.price < b.price) return -1;
+                            return 0;
+                        }
+                        return this.products.sort(compare);
+                    }
+                }
+                
+        });
+        </script>
+
+    </body>
+</html>

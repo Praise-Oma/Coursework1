@@ -1,0 +1,178 @@
+let productArray = [
+    {
+        id: 1,
+        subject: "Chinese",
+        location: "China",
+        currency: "$",
+        price: 5000,
+        image: "image/chinesee.jpg",
+        spaces: 5,
+        availability: true,
+    },
+    
+
+    {
+        id: 2,
+        subject: "Spanish",
+        location: "Spain",
+        currency: "$",
+        price: 6000,
+        image: "image/spanish.jpg",
+        spaces: 5  ,
+        availability: true, 
+    },
+
+    {
+        id: 3,
+        subject: "English",
+        location: "England",
+        currency: "$",
+        price: 4000,
+        image: "image/english.jpg",
+        spaces: 5,
+        availability: true,
+    },
+
+    {
+        id: 4,
+        subject: "French",
+        location: "France",
+        currency: "$",
+        price: 3000,
+        image: "image/french.jpg",
+        spaces: 5,
+        availability: true,
+    },
+
+    {
+        id: 5,
+        subject: "Italian",
+        location: "Italy",
+        currency: "$",
+        price: 7000,
+        image: "image/italian.jpg",
+        spaces: 5,
+        availability: true,
+    },
+
+    {
+        id: 6,
+        subject: "Arabic",
+        location: "Saudi Arabia",
+        currency: "$",
+        price: 9500,
+        image: "image/arabic.jpg",
+        spaces: 5,
+        availability: true,
+    },
+
+    {
+        id: 7,
+        subject: "German",
+        location: "Germany",
+        currency: "$",
+        price: 6500,
+        image: "image/german.jpg",
+        spaces: 5,
+        availability: true,
+    },
+
+    {
+        id: 8,
+        subject: "Korean",
+        location: "South Korea",
+        currency: "$",
+        price: 7500,
+        image: "image/korean.jpg",
+        spaces: 5,
+        availability: true,
+    },
+
+    {
+        id: 9,
+        subject: "Polish",
+        location: "Poland",
+        currency: "$",
+        price: 8500,
+        image: "image/polish.webp",
+        spaces: 5,
+        availability: true,
+    },
+
+    {
+        id: 10,
+        subject: "Latin",
+        location: "Rome",
+        currency: "$",
+        price: 12000,
+        image: "image/latin.jpg",
+        spaces: 5,
+        availability: true,
+    },
+
+    {
+        id: 11,
+        subject: "Maltese",
+        location: "Malta",
+        currency: "$",
+        price: 6000,
+        image: "image/maltese.png",
+        spaces: 5,
+        availability: true,
+    },
+
+    {
+        id: 12,
+        subject: "Afrikaans",
+        location: "South Africa",
+        currency: "$",
+        price: 8000,
+        image: "image/afrikaans.jpg",
+        spaces: 5,
+        availability: true,
+    },
+
+    {
+        id: 13,
+        subject: "Hindi",
+        location: "India",
+        currency: "$",
+        price: 4500,
+        image: "image/hindi.jpg",
+        spaces: 5,
+        availability: true,
+    },
+
+    {
+        id: 14,
+        subject: "Portuguese",
+        location: "Portugal",
+        currency: "$",
+        price: 4000,
+        image: "image/portuguese.jpg",
+        spaces: 5,
+        availability: true,
+    },
+
+    {
+        id: 15,
+        subject: "Igbo",
+        location: "Imo",
+        currency: "$",
+        price: 7000,
+        image: "image/igbo.jpg",
+        spaces: 5,
+        availability: true,
+    },
+
+    {
+        id: 16,
+        subject: "Romanian",
+        location: "Romania",
+        currency: "$",
+        price: 10000,
+        image: "image/romanian.jpg",
+        spaces: 5,
+        availability: true,
+    },
+]

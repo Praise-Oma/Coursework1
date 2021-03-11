@@ -1,0 +1,13 @@
+body {
+    background-color: rgb(100, 110, 151);
+    margin-left: 2% 2%;
+    border-radius: 50px;
+    font-size:medium;
+    font-family:sans-serif;
+    line-height:1.5;
+    text-align:left;   
+}
+
+.figure {
+float: left right;
+}
